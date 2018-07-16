@@ -1,6 +1,5 @@
-import time
-from golfers import golfers
 import utils
+from golfers import golfers
 from flask import Flask, render_template, redirect, request, jsonify, make_response
 
 '''
