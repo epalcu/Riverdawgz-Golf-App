@@ -1,0 +1,17 @@
+golfers = [
+    {'name': "Woods, Tiger", 'cont': "Jesse", 'overall': 0, 'pos': 0},
+    {'name': "Fowler, Rickie", 'cont': "Jesse", 'overall': 0, 'pos': 0},
+    {'name': "Garcia, Sergio", 'cont': "Jesse", 'overall': 0, 'pos': 0},
+    {'name': "Reed, Patrick", 'cont': "Jesse", 'overall': 0, 'pos': 0},
+    {'name': "Watson, Bubba", 'cont': "Jesse", 'overall': 0, 'pos': 0},
+    {'name': "Fleetwood, Tommy", 'cont': "Cory", 'overall': 0, 'pos': 0},
+    {'name': "Rahm, Jon", 'cont': "Cory", 'overall': 0, 'pos': 0},
+    {'name': "Day, Jason", 'cont': "Cory", 'overall': 0, 'pos': 0},
+    {'name': "McIlroy, Rory", 'cont': "Cory", 'overall': 0, 'pos': 0},
+    {'name': "Spieth, Jordan", 'cont': "Cory", 'overall': 0, 'pos': 0},
+    {'name': "Noren, Alexander", 'cont': "Dunn", 'overall': 0, 'pos': 0},
+    {'name': "Stenson, Henrik", 'cont': "Dunn", 'overall': 0, 'pos': 0},
+    {'name': "Thomas, Justin", 'cont': "Dunn", 'overall': 0, 'pos': 0},
+    {'name': "Rose, Justin", 'cont': "Dunn", 'overall': 0, 'pos': 0},
+    {'name': "Johnson, Dustin", 'cont': "Dunn", 'overall': 0, 'pos': 0},
+]
