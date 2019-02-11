@@ -1,16 +1,16 @@
 var updatePositions = function() {
     $.ajax({
-        url: "/home/update",
+        url: '/home/update',
         type: "GET",
         cache: false,
         contentType: false,
         processData: false,
         success: function(m) {
-            window.location.href="/home";
+            window.location.href='/home';
         }
     });
 };
 
-var interval = 1000 * 60 * 1;
+var interval = 1000 * 60;
 
 setInterval(updatePositions, interval);

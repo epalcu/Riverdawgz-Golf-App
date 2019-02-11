@@ -36,7 +36,7 @@ class Utils():
             return None
 
     def updatePosition(self):
-        html = self.simple_get('https://www.golfchannel.com/tours/pga-tour/2018/players-championship/')
+        html = self.simple_get('https://www.golfchannel.com/tours/pga-tour/2018/pga-championship/')
         contents = BeautifulSoup(html, 'html.parser')
         
         # Let's extract all of the player names and positions

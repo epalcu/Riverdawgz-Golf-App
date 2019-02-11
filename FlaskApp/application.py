@@ -1,6 +1,6 @@
 import utils
 from golfers import golfers
-from flask import Flask, render_template, redirect, request, jsonify, make_response
+from flask import Flask, render_template, redirect, request, jsonify, make_response, url_for
 
 '''
 #################################################################################################
@@ -8,7 +8,7 @@ from flask import Flask, render_template, redirect, request, jsonify, make_respo
 #################################################################################################
 '''
 
-application = app = Flask(__name__)
+app = Flask(__name__)
 
 utils = utils.Utils()
 
@@ -18,19 +18,20 @@ utils = utils.Utils()
 #################################################################################################
 '''
 
-@application.route("/")
+@app.route('/')
 def index():
-    return make_response(redirect("/home"), 302)
+    return make_response(redirect(url_for('home')), 302)
 
-@application.route("/home")
+@app.route('/home')
 def home():
     utils.updatePosition()
+    
+    return make_response(render_template('home.html', golfers=sorted(golfers, key=lambda k: k['pos'])), 200)
 
-    return make_response(render_template("home.html", golfers=sorted(golfers, key=lambda k: k['pos'])), 200)
-
-@application.route("/home/update")
+@app.route('/home/update')
 def homeUpdate():
-    return make_response(redirect("/home"), 302)
+    print "Refreshing page!"
+    return make_response(redirect(url_for('home')), 302)
 
 ###################################
 # Main function where app is run. #
@@ -40,5 +41,6 @@ if __name__ == "__main__":
     local = "127.0.0.1"
     app.secret_key = "something"
     
-    application.run(host=public, debug=False)
+    # app.run(host=local, debug=True)
+    app.run()
 
