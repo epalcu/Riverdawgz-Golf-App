@@ -3,6 +3,8 @@ from requests import get
 from requests.exceptions import RequestException
 from contextlib import closing
 from bs4 import BeautifulSoup
+import re
+import json
 
 class Utils():
     def __init__(self):
@@ -36,23 +38,26 @@ class Utils():
             return None
 
     def updatePosition(self):
-        html = self.simple_get('https://www.golfchannel.com/tours/pga-tour/2018/pga-championship/')
+        html = self.simple_get('http://www.espn.com/golf/leaderboard/_/tournamentId/401056527')
         contents = BeautifulSoup(html, 'html.parser')
-        
-        # Let's extract all of the player names and positions
-        names = contents.find_all("a", class_="pName")
-        positions = contents.find_all("td", class_="pos")
-        overall = contents.find_all("td", class_="darkBlueGrad")
+
+        jsonObject = json.loads(str(contents.find('script')).strip("<script type=\"text/javascript\">window['__espnfitt__']=").strip(';'))
+        competitors = jsonObject['page']['content']['leaderboard']['competitors']
         
         # Now we simply loop over our names list,
         # see if name is in our golfers dictionary, 
         # and set his/her position key
-        for name in range(0, len(names)):
+        for competitor in competitors:
             for golfer in golfers:
-                if golfer['name'] in str(names[name]):
+                if golfer['name'] in competitor['name']:
                     try:
-                        golfer['pos'] = int(str(positions[name])[16:-5].strip("T"))
-                        golfer['overall'] = str(overall[name])[25:-5]
+                        golfer['overall'] = str(competitor['toPar'])
+                        if str(competitor['pos']) == 'E':
+                            golfer['pos'] = 0
+                        elif str(competitor['pos']) == '-':
+                            golfer['pos'] = 0
+                        else:
+                            golfer['pos'] = int(str(competitor['pos']).strip("T"))
                     except:
                         golfer['pos'] = 1000
                         golfer['overall'] = "OUT"
