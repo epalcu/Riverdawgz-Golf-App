@@ -52,9 +52,7 @@ class Utils():
                 if golfer['name'] in competitor['name']:
                     try:
                         golfer['overall'] = str(competitor['toPar'])
-                        if str(competitor['pos']) == 'E':
-                            golfer['pos'] = 0
-                        elif str(competitor['pos']) == '-':
+                        if str(competitor['pos']) == '-':
                             golfer['pos'] = 0
                         else:
                             golfer['pos'] = int(str(competitor['pos']).strip("T"))
