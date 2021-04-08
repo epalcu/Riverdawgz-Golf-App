@@ -38,10 +38,15 @@ class Utils():
             return None
 
     def updatePosition(self):
-        html = self.simple_get('http://www.espn.com/golf/leaderboard/_/tournamentId/401056527')
+        html = self.simple_get('https://www.espn.com/golf/leaderboard/_/tournamentId/401243010')
         contents = BeautifulSoup(html, 'html.parser')
-
-        jsonObject = json.loads(str(contents.find('script')).strip("<script type=\"text/javascript\">window['__espnfitt__']=").strip(';'))
+        
+        for content in str(contents).split('<script type="text/javascript"'):
+            if ('__espnfitt__' in content):
+                jsonText = content.strip(">window['__espnfitt__']=")[:-11]
+                print(jsonText)
+                jsonObject = json.loads(jsonText)
+        
         competitors = jsonObject['page']['content']['leaderboard']['competitors']
         
         # Now we simply loop over our names list,
